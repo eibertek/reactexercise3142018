@@ -1,0 +1,24 @@
+$break-small: 320px;
+$break-large: 1200px;
+
+.search {
+  margin: 0.6rem;
+}
+
+.developer {
+  margin: 0.3rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.sidePanel {
+  position: relative;
+  @media screen and (max-width: $break-small) {
+    width: 100px;
+    float: none;
+  }
+  @media screen and (min-width: $break-large) {
+    float: left;
+  }
+  height:100%;
+}
