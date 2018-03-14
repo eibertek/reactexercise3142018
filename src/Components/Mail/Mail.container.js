@@ -1,20 +1,23 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Mail from './Mail.jsx';
-import { fetchMails, fetchPeople } from './actions';
+import { fetchMails, fetchDetails } from './actions';
 
 
 
 const mapStateToProps = (state) => {
   return {
-    content: state.content, //agregar state loading.
+    content: state.content,
+    details: state.details,
+    isLoading: state.isLoadingMails,
+    isLoadingDetails: state.isLoadingDetails,
   }
 }
 
 const dispatchActions = (dispatch) => {
   return {
     fetchMails: bindActionCreators(fetchMails, dispatch),
-    fetchPeople: bindActionCreators(fetchPeople, dispatch),
+    fetchDetails: bindActionCreators(fetchDetails, dispatch),
   }
 }
 

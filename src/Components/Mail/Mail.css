@@ -1,0 +1,12 @@
+.tableBody {
+    overflow: auto;
+}
+
+.spinner {
+    margin: auto;
+    width:100px;
+}
+
+.id {
+    width:60px;
+}

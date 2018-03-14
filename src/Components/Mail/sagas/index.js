@@ -1,18 +1,33 @@
-import { call, put, takeEvery, fork, all } from 'redux-saga/effects'
+import { call, put, takeEvery, all } from 'redux-saga/effects'
 import { serviceUrl } from '../../../Services/mailbox';
-import {FETCH_MAILS, FETCH_PEOPLE, LOAD_PEOPLE} from "../actions/index";
+import {
+  FETCH_MAILS, FETCH_DETAILS, LOAD_DETAILS, FETCH_MAILS_LOADING, FETCH_MAILS_SUCCESS,
+  FETCH_DETAILS_FAILED, FETCH_MAILS_FAILED, FETCH_DETAILS_LOADING, FETCH_DETAILS_SUCCESS
+} from "../actions/index";
 
 export function* mailSaga() {
-  const data = yield call(fetchContent, '/messages?count=1000');
-  const rows = data || [];
-  yield put({type:FETCH_MAILS, data: rows});
-  yield takeEvery(FETCH_PEOPLE, fetchme);
+  yield put({type:FETCH_MAILS_LOADING});
+  try{
+    const data = yield call(fetchContent, '/messages?count=1000');
+    const rows = data || [];
+    yield put({type:FETCH_MAILS_SUCCESS});
+    yield put({type:FETCH_MAILS, data: rows});
+  } catch (err) {
+    yield put({type:FETCH_MAILS_FAILED, err});
+  }
+  yield takeEvery(FETCH_DETAILS, fetchDetails);
 }
 
-export function* fetchme(action) {
-  const data = yield call(fetchContent, '/people/'+ action.data.name );
-  const rows = data || [];
-  yield put({type:LOAD_PEOPLE, data: rows});
+export function* fetchDetails(action) {
+  yield put({type:FETCH_DETAILS_LOADING});
+  try{
+    const data = yield call(fetchContent, '/people/'+ action.data.name );
+    const rows = data || [];
+    yield put({type:FETCH_DETAILS_SUCCESS});
+    yield put({type:LOAD_DETAILS, data: { inbox: action.data.rowData, details: rows}});
+  } catch (err) {
+    yield put({type:FETCH_DETAILS_FAILED, err});
+  }
 }
 
 export async function fetchContent(api) {
@@ -21,7 +36,7 @@ export async function fetchContent(api) {
 }
 
 export function* rootSaga() {
-  return yield [
+  return yield all([
     mailSaga(),
-  ]
+  ]);
 }

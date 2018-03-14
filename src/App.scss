@@ -13,7 +13,6 @@ $break-large: 1200px;
 
 .sidePanel {
   @media screen and (max-width: $break-small) {
-    width: 100px;
     float: none;
   }
   @media screen and (min-width: $break-large) {
@@ -32,5 +31,5 @@ $break-large: 1200px;
     width: 70%;
     float: left;
   }
-  height: calc(100% - 100px);
+  height:90vh;
 }

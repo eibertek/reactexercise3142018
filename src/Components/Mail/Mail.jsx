@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-import Pager from 'react-pager';
 import {
   Table,
   TableBody,
@@ -10,7 +9,8 @@ import {
   TableFooter,
 } from 'material-ui/Table';
 import Inbox from '../Inbox';
-import './bootstrap.css';
+import './Mail.css';
+import Details from "../Details/Details";
 
 
 
@@ -25,28 +25,26 @@ export class Mail extends React.Component {
   }
 
   render() {
-    return this.props.content && this.props.content.map ? <Table height={700} >
-      <TableHeader>
-        <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
-          <TableHeaderColumn>From</TableHeaderColumn>
-          <TableHeaderColumn>Subject</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
-      <TableBody showRowHover={true} >
-      {this.props.content.length > 0 ? this.props.content.map( (row) => <Inbox fetchPeople={this.props.fetchPeople} {...row} />) : null};
-      </TableBody>
-      <TableFooter colSpan="3">
-        <Pager
-          total={1000}
-          current={500}
-          visiblePages={5}
-          titles={{ first: '<|', last: '>|' }}
-          className="pagination-sm center-block"
-          onPageChanged={() => {}}
-        />
-      </TableFooter>
-    </Table> : <div><CircularProgress size={80} thickness={5} /></div>
+    if(this.props.isLoading)  return <div className="spinner">
+      <CircularProgress size={80} thickness={5} /></div>;
+    const height = this.props.details  ? '400px' : '100vh';
+    return <Fragment>
+      <Table height={height}>
+        <TableHeader displaySelectAll={false}>
+          <TableRow>
+            <TableHeaderColumn className="id" >ID</TableHeaderColumn>
+            <TableHeaderColumn>From</TableHeaderColumn>
+            <TableHeaderColumn>Subject</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody showRowHover={true} >
+          {this.props.content.length > 0 ? this.props.content.map( (row, i) => <Inbox key={i} fetchDetails={this.props.fetchDetails} {...row} />) : null};
+        </TableBody>
+        <TableFooter >
+        </TableFooter>
+      </Table>
+      <Details {...this.props.details} isLoading={this.props.isLoadingDetails} />
+      </Fragment>;
   }
 }
 

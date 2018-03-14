@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar';
@@ -11,7 +10,7 @@ import './App.scss';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <MuiThemeProvider>
           <AppBar
             title="Mail Inbox"
