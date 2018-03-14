@@ -12,13 +12,25 @@ $break-large: 1200px;
 }
 
 .sidePanel {
-  position: relative;
   @media screen and (max-width: $break-small) {
     width: 100px;
     float: none;
   }
   @media screen and (min-width: $break-large) {
+    width: 30%;
     float: left;
   }
   height:100%;
+}
+
+.mailBox {
+  background-color: ghostwhite;
+  @media screen and (max-width: $break-small) {
+    float: none;
+  }
+  @media screen and (min-width: $break-large) {
+    width: 70%;
+    float: left;
+  }
+  height: calc(100% - 100px);
 }

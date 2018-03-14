@@ -19,16 +19,16 @@ class App extends Component {
           />
           <div className="sidePanel">
             <div className="search">
-            <SearchBar
-              onChange={() => console.log('onChange')}
-              onRequestSearch={() => console.log('onRequestSearch')}
-            />
-            <div className="developer">
-              Mariano Eiberman / TradeHelm
-            </div>
+              <SearchBar
+                onChange={() => console.log('onChange')}
+                onRequestSearch={() => console.log('onRequestSearch')}
+              />
+              <div className="developer">
+                Mariano Eiberman / TradeHelm
+              </div>
             </div>
           </div>
-          <div>
+          <div className="mailBox">
             <Mail />
           </div>
         </MuiThemeProvider>

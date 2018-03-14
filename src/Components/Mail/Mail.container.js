@@ -7,7 +7,7 @@ import { fetchMails, fetchPeople } from './actions';
 
 const mapStateToProps = (state) => {
   return {
-    content: state.content,
+    content: state.content, //agregar state loading.
   }
 }
 

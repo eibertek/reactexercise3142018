@@ -3,7 +3,7 @@ import { serviceUrl } from '../../../Services/mailbox';
 import {FETCH_MAILS, FETCH_PEOPLE, LOAD_PEOPLE} from "../actions/index";
 
 export function* mailSaga() {
-  const data = yield call(fetchContent, '/messages');
+  const data = yield call(fetchContent, '/messages?count=1000');
   const rows = data || [];
   yield put({type:FETCH_MAILS, data: rows});
   yield takeEvery(FETCH_PEOPLE, fetchme);
