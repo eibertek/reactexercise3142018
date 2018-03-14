@@ -1,13 +1,18 @@
-Lista de tareas:
+#To run:
 
-- Agregar Test para Mail / inbox / Actions / Sagas 2h
-- Agregar fn dispatchear al buscar que traiga solo lo buscado  
-- Correr tests y lint
+First run the npm install
+
+###With npm start its ready in http://localhost:3000
+
+###With npm run test the test has to pass
+
+#NOTES:
+
+ - The Search Feature its not created yet, but its ready to be implemented.
+ - I have all prepared to work with a Pagination feature, but its not implemented. for implmement it I need or a service allowing filters parameters, or create a filter method from the mails stored in the store.
+ either way I have to add the action for retreiving the mails filtered and then pass this new content to Mail Component
+ - I use material-ui for improve the responsive performance
+   
 
 
-LISTO
 
-- Agregar el fetch al comienzo con sagas para que traiga los reusltados  LISTO
-- Agregar en el reducer que guarde el contenido del search LISTO
-- Agregar el dispatch onClick en cada inbox y que ejecute la saga para people 1h
-- Agregar componente details donde se debe ver los datos y que aparezca el mensaje completo 1h

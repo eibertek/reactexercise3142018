@@ -1,5 +1,4 @@
 import React from 'react';
-import CircularProgress from 'material-ui/CircularProgress';
 import './Details.scss';
 
 class Details extends React.Component {
@@ -13,8 +12,7 @@ class Details extends React.Component {
     </div> : null;
   }
   render() {
-    if(this.props.isLoading === true)  return <div> LOADING...
-      <CircularProgress size={80} thickness={5} />
+    if(this.props.isLoading === true)  return <div> LOADING Details...
     </div>;
     if(!this.props.inbox) return null;
     const { from, to, cc, subject, body} = this.props.inbox;

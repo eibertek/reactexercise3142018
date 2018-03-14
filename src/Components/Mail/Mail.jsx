@@ -22,12 +22,15 @@ export class Mail extends React.Component {
 
   static defaultProps = {
     content: [],
+    isLoading: false,
+    isLoadingDetails: false,
+    details: {},
   }
 
   render() {
     if(this.props.isLoading)  return <div className="spinner">
       <CircularProgress size={80} thickness={5} /></div>;
-    const height = this.props.details  ? '400px' : '100vh';
+    const height = this.props.details.inbox ? '400px' : '100vh';
     return <Fragment>
       <Table height={height}>
         <TableHeader displaySelectAll={false}>
